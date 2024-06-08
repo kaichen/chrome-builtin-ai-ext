@@ -27,9 +27,28 @@ function TellMeAJoke({ session }) {
 
   return (
     <div className="plasmo-mt-4">
-      <button onClick={tellMeAJoke} className="plasmo-rounded-2xl plasmo-bg-blue-300 plasmo-px-3 plasmo-py-2">讲个笑话</button>
+      <button onClick={tellMeAJoke} className="plasmo-rounded-2xl plasmo-bg-blue-500 plasmo-text-slate-100 plasmo-px-5 plasmo-py-2">讲个笑话</button>
       {joke && <p className="plasmo-mt-2 plasmo-bg-gray-100 plasmo-px-3 plasmo-py-2">{joke}</p>}
     </div>
+  )
+}
+
+function OpenSidePanelButton() {
+  const open = () => {
+    chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true
+    }).then(([tab]) => {
+      chrome.sidePanel.open({tabId: tab.id })
+    })
+  }
+  return (
+    <button
+      onClick={open}
+      className="plasmo-rounded-2xl plasmo-bg-blue-500 plasmo-text-slate-100 plasmo-px-5 plasmo-py-2"
+    >
+      Chat to Chrome AI
+    </button>
   )
 }
 
@@ -44,6 +63,8 @@ function IndexPopup() {
           Chrome Built-in AI
         </a>
       </h2>
+      <hr className="plasmo-my-4 plasmo-border-gray-300" />
+      <OpenSidePanelButton />
       {enabled ? <TellMeAJoke session={ai} /> : <DisabledComponent />}
     </div>
   )

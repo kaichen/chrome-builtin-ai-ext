@@ -4,7 +4,8 @@ ref https://developer.chrome.com/docs/ai/built-in
 
 Now only have "tell me a joke" function.
 
-![screen-shot](_images/demo-screen-shot.png)
+![chatbot-screen-shot](_images/demo-screen-chatbot.png)
+![first-function-screen-shot](_images/demo-screen-shot.png)
 
 ## Enable AI in Chrome
 
