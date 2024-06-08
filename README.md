@@ -2,7 +2,7 @@
 
 ref https://developer.chrome.com/docs/ai/built-in
 
-Now only have "tell me a joke" function.
+Now only have simple "tell me a joke" and chatbot function.
 
 ![chatbot-screen-shot](_images/demo-screen-chatbot.png)
 ![first-function-screen-shot](_images/demo-screen-shot.png)
@@ -52,3 +52,13 @@ AITextSession {
 }
 
 ```
+
+## Todos
+
+- [x] one click to generate text
+- [x] chatbot in sidepanel
+- [ ] translate page
+- [ ] summary page content
+- [ ] operate page with prompt
+- [ ] query page content
+- [ ] more...
