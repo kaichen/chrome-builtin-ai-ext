@@ -16,8 +16,11 @@ const useChatBot = (): [Message[], (string) => void] => {
 
     setMessages((prevMessages) => [...prevMessages, { msg: question, role: 'user' }]);
 
-    const prompt = article && question === '/summary' ? `<TEXTOFARTICLE>${article.trim()}</TEXTOFARTICLE>\n简短总结以上内容。` : question
+    if (!article && question === '/summary') {
+      return
+    }
 
+    const prompt = article && question === '/summary' ? `<TEXTOFARTICLE>${article.trim()}</TEXTOFARTICLE>\n简短总结以上内容。` : question
     ai.prompt(prompt).then((response) => {
       setMessages((prevMessages) => [...prevMessages, { msg: response, role: 'robot' }]);
     })

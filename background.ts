@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, _tab) => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (_tabs) {
       chrome.tabs.sendMessage(tabId, { action: 'getReadableContent' }, (response) => {
         if (response) {
-          console.log('📚 Readable content:', response)
+          console.log('📚 SET Readable content:', response)
           chrome.storage.local.set({ readableContent: response });
         }
       });

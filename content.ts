@@ -14,6 +14,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getReadableContent') {
     const result = getReadableContent();
     sendResponse(result);
-    console.log('📚 Readable content sent to side panel.', result)
+    console.log('📚 GET Readable content:', result)
   }
 });

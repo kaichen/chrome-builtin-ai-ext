@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FaUser } from "react-icons/fa"
 import { FaRobot } from "react-icons/fa6"
+import Markdown from 'markdown-to-jsx'
 
 import { useAI } from "~lib/useAI"
 import useChatBot from "~lib/useChatBot"
@@ -11,7 +12,7 @@ function UserMessage({ message }) {
   return (
     <div className="plasmo-flex plasmo-items-start plasmo-mb-4 plasmo-justify-end">
       <div className="plasmo-bg-blue-500 plasmo-text-white plasmo-rounded-lg plasmo-p-4">
-        <p className="plasmo-text-sm">{message}</p>
+        <Markdown>{message}</Markdown>
       </div>
       <FaUser className="plasmo-size-8 plasmo-ml-2 plasmo-mt-2" />
     </div>
@@ -22,7 +23,7 @@ function RobotMessage({ message }) {
     <div className="plasmo-flex plasmo-items-start plasmo-mb-4">
       <FaRobot className="plasmo-size-8 plasmo-mr-2 plasmo-mt-2" />
       <div className="plasmo-bg-gray-200 plasmo-rounded-lg plasmo-p-4">
-        <p className="plasmo-text-sm">{message}</p>
+        <Markdown>{message}</Markdown>
       </div>
     </div>
   )
@@ -46,18 +47,12 @@ function IndexSidePanel() {
 
   const handleSendMessage = () => {
     console.log('⌨️ Asking AI\'s input:', inputValue, article)
-    ask(inputValue, article?.textContent);
+    chrome.storage.local.get(["readableContent"]).then((result) => {
+      const article = result?.readableContent
+      ask(inputValue, article?.textContent);
+    });
     setInputValue('');
   }
-
-  useEffect(() => {
-    chrome.storage.onChanged.addListener((changes, namespace) => {
-      for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-        console.log('📚 Storage change:', key, oldValue, newValue)
-        if (key === "readableContent" && newValue) setArticle(newValue);
-      }
-    });
-  }, []);
 
   return (
     <div className="plasmo-px-4 plasmo-py-8 plasmo-h-screen plasmo-flex plasmo-flex-col">

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mozilla/readability": "^0.5.0",
+    "markdown-to-jsx": "^7.4.7",
     "plasmo": "0.86.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -23,9 +24,12 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "path-browserify": "^1.0.0",
     "postcss": "^8.4.38",
     "prettier": "3.2.4",
-    "typescript": "5.3.3"
+    "process": "^0.11.10",
+    "typescript": "5.3.3",
+    "url": "^0.11.0"
   },
   "manifest": {
     "permissions": [
