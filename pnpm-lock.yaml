@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@mozilla/readability':
+    specifier: ^0.5.0
+    version: 0.5.0
   plasmo:
     specifier: 0.86.3
     version: 0.86.3(postcss@8.4.38)(react-dom@18.2.0)(react@18.2.0)
@@ -647,6 +650,11 @@ packages:
       '@lezer/common': 1.2.1
       '@lezer/lr': 1.4.1
       json5: 2.2.3
+    dev: false
+
+  /@mozilla/readability@0.5.0:
+    resolution: {integrity: sha512-Z+CZ3QaosfFaTqvhQsIktyGrjFjSC0Fa4EMph4mqKnWhmyoGICsV/8QK+8HpXut6zV7zwfWwqDmEjtk1Qf6EgQ==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.2:

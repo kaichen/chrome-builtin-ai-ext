@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaUser } from "react-icons/fa"
 import { FaRobot } from "react-icons/fa6"
 
@@ -32,6 +32,7 @@ function IndexSidePanel() {
   const [enabled, _] = useAI()
   const [messages, ask] = useChatBot()
   const [inputValue, setInputValue] = useState('');
+  const [article, setArticle] = useState(null);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -44,9 +45,19 @@ function IndexSidePanel() {
   }
 
   const handleSendMessage = () => {
-    ask(inputValue);
+    console.log('⌨️ Asking AI\'s input:', inputValue, article)
+    ask(inputValue, article?.textContent);
     setInputValue('');
   }
+
+  useEffect(() => {
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+      for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+        console.log('📚 Storage change:', key, oldValue, newValue)
+        if (key === "readableContent" && newValue) setArticle(newValue);
+      }
+    });
+  }, []);
 
   return (
     <div className="plasmo-px-4 plasmo-py-8 plasmo-h-screen plasmo-flex plasmo-flex-col">
